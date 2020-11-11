@@ -1,0 +1,81 @@
+<html>
+<head>
+	<title>Pantomath</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script type="text/javascript">
+
+		var conversation = [];
+		var accessToken = "02d0d610c320489b9635c4afc3a1bd06";
+		var baseUrl = "https://api.dialogflow.com/v1/query?v=20150910";
+
+		$(document).ready(function() {
+			$("#input").keypress(function(event) {
+				if (event.which == 13) {
+					event.preventDefault();
+					sendtodf();
+				}
+		});
+		});
+
+		function sendtodf() {
+
+			var text = $("#input").val();
+			conversation.push("ME:" + text + "\r\n\n");
+			$.ajax({
+				type: "POST",
+				url: baseUrl,
+				contentType: "application/json; charset=utf-8",
+				dataType: "json",
+				headers: {
+					"Authorization": "Bearer " + accessToken
+				},
+				data: JSON.stringify({
+					query: text,
+					lang: "en",
+					sessionId: "mysessionid"
+				}),
+				success: function(data) {
+
+					processResponse(data);
+
+				},
+				error: function() {
+					processResponse("Internal Server Error");
+				}
+		});
+		}
+
+
+		function processResponse(data) {
+
+		var responsetext = data.result.fulfillment.speech;
+		var jsonres = JSON.stringify(data, undefined, 2);
+		conversation.push("BOT:" + responsetext + "\r\n\n");
+		$("#chatview").text(conversation.join(""));
+		$("#jsonresponse").text(jsonres);
+
+		}
+
+
+
+	</script>
+
+	<style type="text/css">
+		body { width: 500px; margin: 0 auto; text-align: center; margin-top: 20px; }
+		div {  position: absolute; }
+		input { width: 400px; }
+		button { width: 50px; }
+		textarea { width: 100%; }
+	</style>
+
+ </head>
+ <body>
+
+		<div>
+			<br> JSON RESPONSE <br> <textarea id="jsonresponse" cols="40" rows="20"> </textarea>
+			<br> CHAT VIEW <br> <textarea id="chatview" cols="40" rows="20"></textarea>
+			<input id="input" type="text"> <button id="rec">SEND</button>
+		</div>
+</body>
+</html>

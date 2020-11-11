@@ -1,0 +1,208 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: url("images/background.jpg");
+  background-size: cover;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 12px;
+  line-height: 1.3;
+  overflow: hidden;
+}
+.chat {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 80vh;
+  max-height: 500px;
+  z-index: 2;
+  overflow: hidden;
+  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.chat-title {
+  flex: 0 1 45px;
+  position: relative;
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.2);
+  color: #fff;
+  text-transform: uppercase;
+  text-align: left;
+  padding: 10px 10px 10px 50px;
+}
+.chat-title h1, .chat-title h2 {
+  font-weight: normal;
+  font-size: 10px;
+  margin: 0;
+  padding: 0;
+}
+.chat-title h2 {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 8px;
+  letter-spacing: 1px;
+}
+.chat-title .avatar {
+  position: absolute;
+  z-index: 1;
+  top: 8px;
+  left: 9px;
+  border-radius: 30px;
+  width: 30px;
+  height: 30px;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  border: 2px solid rgba(255, 255, 255, 0.24);
+}
+.chat-title .avatar img {
+  width: 100%;
+  height: auto;
+}
+
+.messages {
+  flex: 1 1 auto;
+  color: rgba(255, 255, 255, 0.5);
+  overflow: auto;
+  position: relative;
+  width: 100%;
+}
+.messages::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(255,255,255,0.3);
+	background: rgba(0, 0, 0, 0.1);
+	border-radius: 10px;
+}
+
+.messages::-webkit-scrollbar
+{
+	width: 10px;
+	background: rgba(255, 255, 255, 0.1);
+}
+
+.messages::-webkit-scrollbar-thumb
+{
+	border-radius: 25px;
+	background: rgba(255, 255, 255, 0.1);
+}
+.messages .messages-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 101%;
+  width: 100%;
+}
+.messages .message {
+  clear: both;
+  float: left;
+  padding: 6px 10px 7px;
+  border-radius: 10px 10px 10px 0;
+  background: rgba(0, 0, 0, 0.3);
+  margin: 8px 0;
+  font-size: 11px;
+  line-height: 1.4;
+  margin-left: 35px;
+  position: relative;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+.messages .message::before {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  border-top: 6px solid rgba(0, 0, 0, 0.3);
+  left: 0;
+  border-right: 7px solid transparent;
+}
+.messages .message.message-personal {
+  float: right;
+  color: #fff;
+  text-align: right;
+  background-color: #ffffff;
+  color: #000099;
+  border-radius: 10px 10px 0 10px;
+  margin-right: 14px;
+}
+.messages .message.message-personal::before {
+  left: auto;
+  right: 0;
+  border-right: none;
+  border-left: 5px solid transparent;
+  border-top: 4px solid #ffffff;
+  bottom: -4px;
+}
+.messages .message:last-child {
+  margin-bottom: 30px;
+}
+.messages .message.loading {
+  float: left;
+  color: #fff;
+  text-align: left;
+  background-color: #000099;
+  border-radius: 10px 10px 10 0px;
+  margin-right: 14px;
+}
+.messages .message.loading::before {
+  left: 0;
+  right: auto;
+  border-right: 10px solid transparent;
+  border-left: none;
+  border-top: 4px solid #000099;
+  bottom: -4px;
+}
+
+.message-box {
+  flex: 0 1 40px;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 10px;
+  position: relative;
+}
+.message-box .message-input {
+  background: none;
+  border: none;
+  outline: none !important;
+  resize: none;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 11px;
+  height: 17px;
+  margin: 0;
+  padding-right: 20px;
+  width: 265px;
+}
+.message-box textarea:focus:-webkit-placeholder {
+  color: transparent;
+}
+.message-box .message-submit {
+  font-family: 'Poppins', sans-serif;
+  position: absolute;
+  z-index: 1;
+  top: 9px;
+  right: 10px;
+  color: #ffffff;
+  border: none;
+  background: #004d99;
+  font-size: 10px;
+  text-transform: uppercase;
+  line-height: 1;
+  padding: 6px 10px;
+  border-radius: 10px;
+  outline: none !important;
+  transition: background .2s ease;
+}
+.message-box .message-submit:hover {
+  background: #4da6ff;
+}
