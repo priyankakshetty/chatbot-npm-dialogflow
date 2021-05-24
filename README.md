@@ -30,4 +30,4 @@ Back End:
 
 **Snapshot:**
 
-![Chatbot Screenshot](/res/chatbot-images/chatbot.png)
+![Chatbot Screenshot](blob/main//res/chatbot-images/chatbot.png)
