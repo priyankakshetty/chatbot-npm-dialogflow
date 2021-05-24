@@ -30,4 +30,4 @@ Back End:
 
 **Snapshot:**
 
-![Chatbot Screenshot](/res/chatbot-images/chatbot.png)
+![Chatbot Screenshot](https://raw.githubusercontent.com/priyankakshetty/chatbot-npm-dialogflow/main/res/chatbot-images/chatbot.PNG)
